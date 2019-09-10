@@ -16,14 +16,13 @@ List MakeEmpty();
 Position Find( List L, ElementType X );
 bool Insert( List L, ElementType X, Position P );
 bool Delete( List L, Position P );
-
+void print(List L);
 int main()
 {
     List L;
     ElementType X;
     Position P;
     int N;
-    
     L = MakeEmpty();
     scanf("%d", &N);
     while ( N-- ) {
@@ -48,6 +47,7 @@ int main()
         if ( Insert(L, 0, P)==false )
             printf(" Insertion Error: 0 is not in.\n");
     }
+    print(L);
     return 0;
 }
 List MakeEmpty(){
@@ -65,6 +65,7 @@ bool Insert( List L, ElementType X, Position P ){
         printf("ILLEGAL POSITION");
         return false;
     }
+    
     int i;
     for(i=L->Last;i>=P;i--){
         L->Data[i+1]=L->Data[i];
@@ -94,5 +95,13 @@ bool Delete( List L, Position P ){
     for(i=P;i<=L->Last-1;i++){
         L->Data[i]=L->Data[i+1];
     }
+    L->Last--;
     return true;
+}
+void print(List L){
+    int i=0;
+    while(i<=L->Last){
+        printf("%d ",L->Data[i]);
+        i++;
+    }
 }
